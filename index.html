@@ -1,62 +1,105 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <title>Conference webpage</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="conference.css" rel="stylesheet">
-    </head>
-    <body>
-        <header>
-            <h1>Welcome to Fratboy  TechCon 2026</h1>
-            <p>The Ultimate Technology and Programming Conference </p>
-        </header>
-        <div class="links">
-            <a href="#About the Event">About</a>
-            <a href="#schedule">Schedule</a>
-            <a href="#speakers">Speakers</a>
-            <a href="#contact">Contact</a>
-        </div>
-            <div class="container">
-                <div class="about-event">   
-                    <h2 id="About the Event">About the Event</h2>
-                    <div class="paragrapheH2">
-                        <p>Fratboy Techcon 2026 brings together leading minds in programming,tech,and innovation. 
-                            Join us for a day of insighful talks,hands-on workshops,and an opportunity 
-                            to network with fellow geeks and professionals from all around the world.
-                        </p>
-                    </div>
+<head>
+    <meta charset="UTF-8">
+    <title>Conference webpage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="conference.css" rel="stylesheet">
+</head>
+
+<body>
+    <header id="home">
+        <h1>Welcome to Fratboy TechCon 2026</h1>
+        <p>The ultimate technology and programming conference</p>
+        <a href="#schedule" class="hero-btn">View Schedule</a>
+    </header>
+
+    <nav class="links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#speakers">Speakers</a>
+        <a href="mailto:fraterne2023@gmail.com">Contact</a>
+    </nav>
+
+    <main class="container">
+        <section class="about-event" id="about">
+            <h2>About the Event</h2>
+            <p>
+                Fratboy TechCon 2026 brings together passionate developers, tech leaders,
+                students, and innovators for a full day of learning, networking, and inspiration.
+                Join us for insightful talks, practical workshops, and opportunities to connect
+                with professionals from around the world.
+            </p>
+        </section>
+
+        <section class="about-event" id="schedule">
+            <h2>Event Schedule</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Session</th>
+                        <th>Speaker</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>9:00 AM</td>
+                        <td>Opening Keynote</td>
+                        <td>Fratboy Coding Platform</td>
+                    </tr>
+
+                    <tr>
+                        <td>10:30 AM</td>
+                        <td>Understanding AI and Machine Learning</td>
+                        <td>Mr. Fraterne Bahirwe</td>
+                    </tr>
+
+                    <tr>
+                        <td>1:00 PM</td>
+                        <td>Lunch Break</td>
+                        <td>-</td>
+                    </tr>
+
+                    <tr>
+                        <td>2:00 PM</td>
+                        <td>Exploring the Future of Cloud Computing</td>
+                        <td>Ms. Micheline Nkda</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="about-event" id="speakers">
+            <h2>Featured Speakers</h2>
+
+            <div class="speakers">
+                <div class="speaker-card">
+                    <h3>Mr. Fraterne Bahirwe</h3>
+                    <p>Front-End Developer and open-source contributor.</p>
                 </div>
-                <div class="about-event">  
-                    <h2 id="schedule">Event Schedule</h2>
-                    <table>
-                        <tr>
-                            <th>Time</th>
-                            <th>Session</th>
-                            <th>Contest</th>
-                        </tr>
-                        <tr>
-                            <td>9:00 AM</td>
-                            <td>Opening Keynote</td>
-                            <td>Fratboy Coding Platform</td>
-                        </tr>
-                        <tr class="line3">
-                            <td>10:30 AM</td>
-                            <td>Understand AI and /machine Learning</td>
-                            <td>Mr Fraterne bahirwe</td>
-                        </tr>
-                        <tr>
-                            <td>1:00 PM</td>
-                            <td>Lunch Break</td>
-                            <td>-</td>
-                        </tr>
-                        <tr class="line3">
-                            <td>2:00 PM</td>
-                            <td>Exploiting the Future of Cloud COmputing</td>
-                            <td>Ms.Micheline nkda</td>
-                        </tr>
-                    </table>
+
+                <div class="speaker-card">
+                    <h3>Ms. Micheline Nkda</h3>
+                    <p>Cloud computing and technology innovation speaker.</p>
                 </div>
             </div>
-    </body>
+        </section>
+
+        <section class="contact-section">
+            <h2>Want to attend or ask a question?</h2>
+            <a href="https://wa.me/250 792 865 348" class="contact-btn" target="_blank">
+                Chat on WhatsApp
+            </a>
+            <a href="mailto:fraterne2023@gmail.com" class="contact-btn">Contact Us</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Fratboy TechCon. All rights reserved.</p>
+    </footer>
+</body>
 </html>

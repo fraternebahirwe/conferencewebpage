@@ -1,104 +1,156 @@
-body{
-    background-color:rgb(96, 96, 96) ;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-header{
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #222;
+    line-height: 1.6;
+}
+
+header {
+    background: linear-gradient(135deg, #0f172a, #1d4ed8);
+    color: white;
     text-align: center;
-    background-color: rgb(113, 113, 113);
-    color: antiquewhite;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    padding: 15px;  
+    padding: 80px 20px;
 }
 
-.links{
-    display: flex;
-    justify-content: center;
-    gap:35px;
-    background-color: rgb(65, 124, 143);
-    color:#ffffff;
-    width: 100%;
+header h1 {
+    font-size: 42px;
+    margin-bottom: 15px;
 }
 
-.links a{
-    color: #ffffff;
-    text-decoration: none;
+header p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.hero-btn,
+.contact-btn {
     display: inline-block;
-    padding: 10px;
+    background: white;
+    color: #1d4ed8;
+    padding: 12px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
 }
 
-.links a:hover{
-    text-decoration: underline;
+.links {
+    background: white;
+    padding: 18px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
 }
 
-h2{
-    color:rgb(0, 47, 105) ;
+.links a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #0f172a;
+    font-weight: bold;
 }
 
-table{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    text-align: left;
-    color: #141111;
-    border-collapse: collapse; 
-    width:100%;   
+.links a:hover {
+    color: #1d4ed8;
 }
 
-td,th{
-    border: 2px solid rgb(175, 175, 179);  
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 50px auto;
 }
 
-td{
-    padding: 20px;
+.about-event {
+    background: white;
+    padding: 35px;
+    margin-bottom: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
 }
 
-th{
-    color: rgb(6, 52, 72);
-    padding: 20px;
-    background-color: rgb(208, 218, 218);
+.about-event h2 {
+    color: #1d4ed8;
+    margin-bottom: 15px;
 }
 
-.line3{
-    background-color: rgb(208, 218, 218);
-}
-
-.paragrapheH2{
-    color: #0e191e;
-}
-
-.about-event{
-    margin-top: 30px;
-    margin-left: 10%;
-    margin-right: 10%;
-    background-color: rgb(69, 124, 144);
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 0px 15px rgb(0,0,0,0.1);
-}
-
-@media screen and (max-width: 600px) {
-
-
-    body {
-        display: flex;
-        flex-direction: column;
-    ;
-    }
-
-    .about-event{
-    margin-top: 30px;
-    margin-left: 5%;
-    margin-right: 5%;
-    background-color: rgb(69, 124, 144);
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 0px 15px rgb(0,0,0,0.1);
-    }
-    
-    .links{
-    display: flex;
-    justify-content: center;
-    gap:15px;
-    background-color: rgb(65, 124, 156);
-    color:#ffffff;
+table {
     width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th {
+    background: #1d4ed8;
+    color: white;
+}
+
+th,
+td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+tbody tr:nth-child(even) {
+    background: #f1f5ff;
+}
+
+.speakers {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.speaker-card {
+    background: #f4f7fb;
+    padding: 25px;
+    border-left: 5px solid #1d4ed8;
+    border-radius: 12px;
+}
+
+.contact-section {
+    text-align: center;
+    background: #0f172a;
+    color: white;
+    padding: 50px 20px;
+    border-radius: 16px;
+}
+
+.contact-section h2 {
+    margin-bottom: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    background: #0f172a;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 30px;
+    }
+
+    .links a {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .speakers {
+        grid-template-columns: 1fr;
+    }
+
+    table {
+        font-size: 14px;
     }
 }
