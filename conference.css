@@ -117,6 +117,23 @@ tbody tr:nth-child(even) {
     border-radius: 12px;
 }
 
+
+.speaker-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.speaker-card {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.speaker-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
 .contact-section {
     text-align: center;
     background: #0f172a;
