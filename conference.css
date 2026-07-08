@@ -1,3 +1,4 @@
+/* 1. RESET & BASE STYLES */
 * {
     margin: 0;
     padding: 0;
@@ -8,192 +9,88 @@ html {
     scroll-behavior: smooth;
 }
 
-/* 1. Fond général rafraîchi pour faire ressortir les blocs blancs */
 body {
-    font-family: Arial, sans-serif;
-    background: #f8fafc; /* Un gris-bleu très doux et moderne */
-    color: #0f172a; /* Texte principal ardoise foncé pour un meilleur contraste */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: #f8fafc;
+    color: #1e293b;
     line-height: 1.6;
 }
 
-/* 2. Header avec un dégradé Tech plus profond et immersif */
-header {
-    background: linear-gradient(135deg, #0f172a 30%, #2563eb 100%);
-    color: white;
-    text-align: center;
-    padding: 100px 20px; /* Un peu plus d'espace pour respirer */
-}
-
-header h1 {
-    font-size: 42px;
-    margin-bottom: 15px;
-    font-weight: 800;
-}
-
-header p {
-    font-size: 18px;
-    margin-bottom: 30px;
-    color: #93c5fd; /* Bleu clair pour adoucir le sous-titre */
-}
-
-/* 3. Boutons modernisés */
-.hero-btn,
-.contact-btn {
-    display: inline-block;
-    background: #ffffff;
-    color: #2563eb;
-    padding: 14px 32px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: bold;
-    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.2);
-    transition: all 0.2s ease;
-}
-
-.hero-btn:hover {
-    background: #f1f5f9;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
-}
-
-.contact-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 30px; /* Réduit pour éviter l'effet trop écarté */
-    flex-wrap: wrap;
-}
-
-/* 4. Barre de navigation effet verre (Blure/Sticky) */
+/* 2. STICKY NAVIGATION */
 .links {
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
     padding: 18px;
     text-align: center;
-    box-shadow: 0 4px 30px rgba(15, 23, 42, 0.03);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     position: sticky;
     top: 0;
-    backdrop-filter: blur(10px); /* Effet flou Premium en arrière-plan */
-    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-    z-index: 100;
+    z-index: 1000;
 }
 
 .links a {
     margin: 0 15px;
     text-decoration: none;
-    color: #475569; /* Gris texturé */
+    color: #0f172a;
     font-weight: 600;
     transition: color 0.2s ease;
 }
 
 .links a:hover {
-    color: #2563eb; /* Bleu électrique au survol */
+    color: #2563eb;
 }
 
-.container {
-    width: 90%;
-    max-width: 1100px;
-    margin: 60px auto;
-}
-
-/* 5. Cartes de section épurées */
-.about-event {
-    background: white;
-    padding: 40px;
-    margin-bottom: 35px;
-    border-radius: 16px;
-    border: 1px solid #f1f5f9;
-    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
-}
-
-.about-event h2 {
-    color: #1e40af; /* Bleu nuit corporatif */
-    margin-bottom: 20px;
-    font-weight: 700;
-}
-
-/* 6. Tableau plus élégant et aéré */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 25px;
-}
-
-th {
-    background: #f8fafc; /* Fond clair pour les titres, style minimaliste */
-    color: #1e3a8a;
-    font-weight: 700;
-    border-bottom: 2px solid #e2e8f0;
-}
-
-th,
-td {
-    padding: 18px;
-    border-bottom: 1px solid #edf2f7; /* Lignes horizontales uniquement (plus moderne) */
-    text-align: left;
-}
-
-tbody tr:nth-child(even) {
-    background: #f8fafc; /* Légère nuance alternée */
-}
-
-.speakers {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
-}
-
-/* 7. RE-DESIGN COMPLET des cartes Speakers (Look Soft Tech Premium) */
-.speaker-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-}
-
-.speaker-card {
-    background: #ffffff;
-    padding: 30px;
-    border-top: 4px solid #2563eb; /* Ligne de couleur sur le dessus */
-    border-radius: 12px;
-    cursor: pointer;
-    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.speaker-card h3 {
-    color: #0f172a;
-    margin-bottom: 8px;
-    font-size: 20px;
-}
-
-.speaker-card p {
-    color: #64748b; /* Texte de description plus doux */
-}
-
-.speaker-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 30px rgba(37, 99, 235, 0.12); /* Ombre bleutée dynamique */
-    border-top-color: #1d4ed8;
-}
-
-/* 8. Section de contact dark minimaliste */
-.contact-section {
-    text-align: center;
-    background: #0f172a;
+/* 3. HERO HEADER */
+header {
+    background: linear-gradient(135deg, #0f172a, #1e40af);
     color: white;
-    padding: 60px 20px;
-    border-radius: 16px;
-    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.15);
+    text-align: center;
+    padding: 100px 20px;
 }
 
-.contact-section h2 {
-    margin-bottom: 25px;
+header h1 {
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    margin-bottom: 15px;
+}
+
+header p {
+    font-size: 20px;
+    color: #93c5fd;
+    margin-bottom: 35px;
+}
+
+/* 4. BUTTONS */
+.hero-btn,
+.contact-btn {
+    display: inline-block;
+    background: white;
+    color: #2563eb;
+    padding: 14px 32px;
+    border-radius: 30px;
+    text-decoration: none;
     font-weight: 700;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
 }
 
-/* Boutons spécifiques à la section sombre */
+.hero-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    background: #f8fafc;
+}
+
+.contact-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
 .contact-section .contact-btn {
     background: #2563eb;
     color: white;
-    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
 }
 
 .contact-section .contact-btn:hover {
@@ -201,23 +98,149 @@ tbody tr:nth-child(even) {
     transform: translateY(-2px);
 }
 
+/* 5. STRUCTURE CONTAINER */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 60px auto;
+}
+
+/* 6. CONTENT SECTIONS */
+.about-event, .schedule-section, .speakers-section {
+    background: white;
+    padding: 40px;
+    margin-bottom: 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+h2 {
+    color: #0f172a;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+/* 7. REVOLUTIONIZED TABLE DESIGN */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+}
+
+th {
+    background: #1e293b;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+}
+
+th, td {
+    padding: 18px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+tbody tr:nth-child(even) {
+    background: #f8fafc;
+}
+
+/* 8. MODERNISED SPEAKERS CARDS */
+.speakers {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 25px;
+}
+
+.speaker-link {
+    text-decoration: none;
+    display: block;
+}
+
+.speaker-card {
+    background: #0f172a;
+    color: white;
+    padding: 30px;
+    border-radius: 14px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.speaker-card h3 {
+    font-size: 20px;
+    color: #f8fafc;
+    margin-bottom: 8px;
+}
+
+.speaker-card p {
+    color: #94a3b8;
+    font-size: 15px;
+}
+
+.speaker-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+    border-color: #2563eb;
+}
+
+/* 9. CONTACT HERO BANNER */
+.contact-section {
+    text-align: center;
+    background: #0f172a;
+    color: white;
+    padding: 60px 30px;
+    border-radius: 20px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.contact-section h2 {
+    color: white;
+}
+
+/* 10. FOOTER */
 footer {
     text-align: center;
     padding: 35px;
     background: #0f172a;
-    color: #64748b; /* Texte discret */
-    border-top: 1px solid #1e293b;
+    color: #64748b;
+    font-size: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* --- Media Queries (Correction de tes accolades imbriquées) --- */
+/* 11. CLEAN FIXED RESPONSIVE DESIGN */
 @media (max-width: 768px) {
+    header {
+        padding: 60px 20px;
+    }
+
     header h1 {
         font-size: 32px;
     }
 
+    .links {
+        padding: 12px;
+    }
+
     .links a {
-        display: block;
-        margin: 14px 0;
+        display: inline-block;
+        margin: 5px 10px;
+        font-size: 15px;
+    }
+
+    .speakers {
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
 
     .contact-buttons {
@@ -232,11 +255,7 @@ footer {
         text-align: center;
     }
 
-    .speakers {
-        grid-template-columns: 1fr;
-    }
-
-    table {
-        font-size: 14px;
+    th, td {
+        padding: 12px;
     }
 }
