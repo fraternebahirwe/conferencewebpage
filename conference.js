@@ -11,103 +11,161 @@ document.addEventListener("DOMContentLoaded", () => {
        1. DOM ELEMENTS
        ===================================================== */
 
-    const nav = document.querySelector(".main-nav");
-    const navLinks = document.querySelectorAll(".nav-links a");
-    const sections = document.querySelectorAll("main section[id]");
-
-    const revealElements = document.querySelectorAll(
-        ".section, .event-info-item, .speaker-card, .table-responsive"
+    const navigation = document.querySelector(".main-nav");
+    const navigationLinks = document.querySelectorAll(
+        ".main-nav a[href^='#']"
     );
 
-    const copyright = document.querySelector(".copyright");
+    const sections = document.querySelectorAll(
+        "main section[id]"
+    );
+
+    const speakerCards = document.querySelectorAll(
+        ".speaker-card"
+    );
+
+    const table = document.querySelector(
+        ".table-responsive"
+    );
+
+    const footer = document.querySelector(
+        ".main-footer"
+    );
 
 
     /* =====================================================
-       2. NAVIGATION SHADOW ON SCROLL
+       2. NAVIGATION SCROLL EFFECT
        ===================================================== */
 
-    function handleNavigationScroll() {
+    function updateNavigation() {
 
-        if (!nav) return;
+        if (!navigation) {
+            return;
+        }
 
-        if (window.scrollY > 20) {
-            nav.classList.add("nav-scrolled");
+        if (window.scrollY > 30) {
+
+            navigation.classList.add("nav-scrolled");
+
         } else {
-            nav.classList.remove("nav-scrolled");
+
+            navigation.classList.remove("nav-scrolled");
+
         }
     }
 
 
     /* =====================================================
-       3. ACTIVE NAVIGATION LINK
+       3. ACTIVE NAVIGATION
        ===================================================== */
 
     function updateActiveNavigation() {
 
-        if (!navLinks.length) return;
-
-        // Home is active at the top of the page
-        if (window.scrollY < 250) {
-
-            navLinks.forEach((link) => {
-
-                link.classList.toggle(
-                    "active",
-                    link.getAttribute("href") === "#home"
-                );
-
-            });
-
+        if (!navigationLinks.length) {
             return;
         }
 
-        const scrollPosition = window.scrollY + 160;
+        const currentPosition =
+            window.scrollY + 150;
 
-        let activeSectionId = null;
+        let currentSection = "home";
+
 
         sections.forEach((section) => {
 
-            const sectionTop = section.offsetTop;
+            const sectionTop =
+                section.offsetTop;
+
             const sectionBottom =
                 sectionTop + section.offsetHeight;
 
             if (
-                scrollPosition >= sectionTop &&
-                scrollPosition < sectionBottom
+                currentPosition >= sectionTop &&
+                currentPosition < sectionBottom
             ) {
-                activeSectionId = section.id;
+
+                currentSection =
+                    section.id;
+
             }
 
         });
 
 
-        navLinks.forEach((link) => {
+        navigationLinks.forEach((link) => {
 
-            const target = link.getAttribute("href");
+            const target =
+                link.getAttribute("href");
 
-            if (target === `#${activeSectionId}`) {
-                link.classList.add("active");
-            } else {
-                link.classList.remove("active");
-            }
+            const isActive =
+                target === `#${currentSection}`;
+
+            link.classList.toggle(
+                "active",
+                isActive
+            );
 
         });
     }
 
 
     /* =====================================================
-       4. NAVIGATION CLICK
+       4. SMOOTH NAVIGATION
        ===================================================== */
 
-    navLinks.forEach((link) => {
+    navigationLinks.forEach((link) => {
 
-        link.addEventListener("click", () => {
+        link.addEventListener("click", (event) => {
 
-            navLinks.forEach((item) => {
-                item.classList.remove("active");
+            const target =
+                link.getAttribute("href");
+
+            if (
+                !target ||
+                target === "#"
+            ) {
+                return;
+            }
+
+
+            const targetSection =
+                document.querySelector(target);
+
+            if (!targetSection) {
+                return;
+            }
+
+
+            event.preventDefault();
+
+
+            const navigationHeight =
+                navigation
+                    ? navigation.offsetHeight
+                    : 0;
+
+
+            const targetPosition =
+                targetSection.offsetTop -
+                navigationHeight;
+
+
+            window.scrollTo({
+
+                top: targetPosition,
+
+                behavior: "smooth"
+
             });
 
-            link.classList.add("active");
+
+            /* Update URL without jumping */
+
+            history.pushState(
+                null,
+                "",
+                target
+            );
 
         });
 
@@ -118,14 +176,20 @@ document.addEventListener("DOMContentLoaded", () => {
        5. SCROLL REVEAL ANIMATION
        ===================================================== */
 
-    const prefersReducedMotion =
+    const revealElements =
+        document.querySelectorAll(
+            "main section, .speaker-card, .table-responsive"
+        );
+
+
+    const reducedMotion =
         window.matchMedia(
             "(prefers-reduced-motion: reduce)"
         ).matches;
 
 
     if (
-        !prefersReducedMotion &&
+        !reducedMotion &&
         "IntersectionObserver" in window
     ) {
 
@@ -135,13 +199,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     entries.forEach((entry) => {
 
-                        if (!entry.isIntersecting) {
+                        if (
+                            !entry.isIntersecting
+                        ) {
                             return;
                         }
+
 
                         entry.target.classList.add(
                             "revealed"
                         );
+
 
                         observer.unobserve(
                             entry.target
@@ -151,102 +219,347 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 },
                 {
-                    threshold: 0.12,
+                    threshold: 0.1,
+
                     rootMargin:
-                        "0px 0px -40px 0px"
+                        "0px 0px -50px 0px"
                 }
             );
 
 
-        revealElements.forEach((element) => {
+        revealElements.forEach(
+            (element) => {
 
-            element.classList.add("reveal");
+                element.classList.add(
+                    "reveal"
+                );
 
-            revealObserver.observe(element);
+                revealObserver.observe(
+                    element
+                );
 
-        });
+            }
+        );
 
     } else {
 
-        revealElements.forEach((element) => {
+        revealElements.forEach(
+            (element) => {
 
-            element.classList.add("revealed");
+                element.classList.add(
+                    "revealed"
+                );
 
-        });
+            }
+        );
 
     }
 
 
     /* =====================================================
-       6. CURRENT YEAR
+       6. SPEAKER CARD INTERACTION
        ===================================================== */
 
-    if (copyright) {
+    speakerCards.forEach((card) => {
+
+        card.addEventListener(
+            "mouseenter",
+            () => {
+
+                card.classList.add(
+                    "speaker-active"
+                );
+
+            }
+        );
+
+
+        card.addEventListener(
+            "mouseleave",
+            () => {
+
+                card.classList.remove(
+                    "speaker-active"
+                );
+
+            }
+        );
+
+    });
+
+
+    /* =====================================================
+       7. TABLE ROW INTERACTION
+       ===================================================== */
+
+    const scheduleRows =
+        document.querySelectorAll(
+            ".schedule-section tbody tr"
+        );
+
+
+    scheduleRows.forEach((row) => {
+
+        row.addEventListener(
+            "mouseenter",
+            () => {
+
+                row.classList.add(
+                    "schedule-active"
+                );
+
+            }
+        );
+
+
+        row.addEventListener(
+            "mouseleave",
+            () => {
+
+                row.classList.remove(
+                    "schedule-active"
+                );
+
+            }
+        );
+
+    });
+
+
+    /* =====================================================
+       8. CURRENT YEAR
+       ===================================================== */
+
+    if (footer) {
 
         const currentYear =
             new Date().getFullYear();
 
-        copyright.textContent =
-            `© ${currentYear} Fratboy TechCon. All rights reserved.`;
+
+        const footerText =
+            footer.querySelector("p");
+
+
+        if (footerText) {
+
+            footerText.textContent =
+                `© ${currentYear} Fratboy TechCon. All rights reserved.`;
+
+        }
+
     }
 
 
     /* =====================================================
-       7. EMPTY HASH LINKS
+       9. BACK TO TOP BUTTON
        ===================================================== */
 
-    document
-        .querySelectorAll('a[href="#"]')
-        .forEach((link) => {
+    const backToTop =
+        document.createElement("button");
 
-            link.addEventListener(
-                "click",
-                (event) => {
 
-                    event.preventDefault();
+    backToTop.type = "button";
 
-                }
+    backToTop.className =
+        "back-to-top";
+
+    backToTop.setAttribute(
+        "aria-label",
+        "Back to top"
+    );
+
+    backToTop.setAttribute(
+        "title",
+        "Back to top"
+    );
+
+    backToTop.innerHTML = "↑";
+
+
+    document.body.appendChild(
+        backToTop
+    );
+
+
+    /* Show button after scrolling */
+
+    function updateBackToTop() {
+
+        if (window.scrollY > 500) {
+
+            backToTop.classList.add(
+                "visible"
             );
 
-        });
+        } else {
+
+            backToTop.classList.remove(
+                "visible"
+            );
+
+        }
+
+    }
+
+
+    /* Back to top action */
+
+    backToTop.addEventListener(
+        "click",
+        () => {
+
+            window.scrollTo({
+
+                top: 0,
+
+                behavior: "smooth"
+
+            });
+
+        }
+    );
 
 
     /* =====================================================
-       8. INITIALIZE
+       10. SCROLL PROGRESS BAR
        ===================================================== */
 
-    handleNavigationScroll();
-    updateActiveNavigation();
+    const progressBar =
+        document.createElement("div");
+
+
+    progressBar.className =
+        "scroll-progress";
+
+
+    document.body.appendChild(
+        progressBar
+    );
+
+
+    function updateScrollProgress() {
+
+        const pageHeight =
+            document.documentElement
+                .scrollHeight -
+            window.innerHeight;
+
+
+        if (pageHeight <= 0) {
+
+            progressBar.style.width =
+                "0%";
+
+            return;
+
+        }
+
+
+        const progress =
+            (window.scrollY / pageHeight) *
+            100;
+
+
+        progressBar.style.width =
+            `${progress}%`;
+
+    }
 
 
     /* =====================================================
-       9. SCROLL EVENT
+       11. SCROLL PERFORMANCE
        ===================================================== */
 
-    let ticking = false;
+    let scrollTicking = false;
+
+
+    function handleScroll() {
+
+        if (scrollTicking) {
+            return;
+        }
+
+
+        window.requestAnimationFrame(
+            () => {
+
+                updateNavigation();
+
+                updateActiveNavigation();
+
+                updateBackToTop();
+
+                updateScrollProgress();
+
+
+                scrollTicking = false;
+
+            }
+        );
+
+
+        scrollTicking = true;
+
+    }
+
 
     window.addEventListener(
         "scroll",
-        () => {
-
-            if (!ticking) {
-
-                window.requestAnimationFrame(() => {
-
-                    handleNavigationScroll();
-                    updateActiveNavigation();
-
-                    ticking = false;
-
-                });
-
-                ticking = true;
-            }
-
-        },
+        handleScroll,
         {
             passive: true
         }
+    );
+
+
+    /* =====================================================
+       12. RESIZE HANDLING
+       ===================================================== */
+
+    let resizeTimer;
+
+
+    window.addEventListener(
+        "resize",
+        () => {
+
+            clearTimeout(
+                resizeTimer
+            );
+
+
+            resizeTimer =
+                setTimeout(() => {
+
+                    updateActiveNavigation();
+
+                    updateScrollProgress();
+
+                }, 150);
+
+        }
+    );
+
+
+    /* =====================================================
+       13. INITIAL STATE
+       ===================================================== */
+
+    updateNavigation();
+
+    updateActiveNavigation();
+
+    updateBackToTop();
+
+    updateScrollProgress();
+
+
+    /* =====================================================
+       14. PAGE LOADED
+       ===================================================== */
+
+    document.body.classList.add(
+        "page-loaded"
     );
 
 });
